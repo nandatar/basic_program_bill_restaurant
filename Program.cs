@@ -1,6 +1,4 @@
-﻿using System.Linq;
-using System.Transactions;
-
+﻿
 namespace basic_program
 {
     public class Program
