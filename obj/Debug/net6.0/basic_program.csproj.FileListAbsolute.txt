@@ -1,0 +1,15 @@
+C:\Users\user\source\repos\MCC73\basic_program\bin\Debug\net6.0\basic_program.exe
+C:\Users\user\source\repos\MCC73\basic_program\bin\Debug\net6.0\basic_program.deps.json
+C:\Users\user\source\repos\MCC73\basic_program\bin\Debug\net6.0\basic_program.runtimeconfig.json
+C:\Users\user\source\repos\MCC73\basic_program\bin\Debug\net6.0\basic_program.dll
+C:\Users\user\source\repos\MCC73\basic_program\bin\Debug\net6.0\basic_program.pdb
+C:\Users\user\source\repos\MCC73\basic_program\obj\Debug\net6.0\basic_program.csproj.AssemblyReference.cache
+C:\Users\user\source\repos\MCC73\basic_program\obj\Debug\net6.0\basic_program.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\source\repos\MCC73\basic_program\obj\Debug\net6.0\basic_program.AssemblyInfoInputs.cache
+C:\Users\user\source\repos\MCC73\basic_program\obj\Debug\net6.0\basic_program.AssemblyInfo.cs
+C:\Users\user\source\repos\MCC73\basic_program\obj\Debug\net6.0\basic_program.csproj.CoreCompileInputs.cache
+C:\Users\user\source\repos\MCC73\basic_program\obj\Debug\net6.0\basic_program.dll
+C:\Users\user\source\repos\MCC73\basic_program\obj\Debug\net6.0\refint\basic_program.dll
+C:\Users\user\source\repos\MCC73\basic_program\obj\Debug\net6.0\basic_program.pdb
+C:\Users\user\source\repos\MCC73\basic_program\obj\Debug\net6.0\basic_program.genruntimeconfig.cache
+C:\Users\user\source\repos\MCC73\basic_program\obj\Debug\net6.0\ref\basic_program.dll
