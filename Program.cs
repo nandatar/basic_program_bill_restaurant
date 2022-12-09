@@ -13,11 +13,6 @@
         }
 
 
-        /*
-        * Penerapan If Else dengan menggunakan method CheckDiscount
-        * 
-        */
-
         static float CheckDiscount(float checkdiscount)
         {
             float x = 0;
