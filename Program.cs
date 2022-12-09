@@ -1,5 +1,4 @@
-﻿
-namespace basic_program
+﻿namespace basic_program
 {
     public class Program
     {
