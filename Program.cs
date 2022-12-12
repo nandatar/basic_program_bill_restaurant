@@ -2,43 +2,22 @@
 {
     public class Program
     {
+        static string[,] arr = {};
+        static string[] menu_cart =  { };
+        static int[] harga_cart =  { };
+        static int[] banyak_cart =  { };
         public static void Main(string[] args)
-        {
-            string[,] arr= new string[3, 3];
-            string[] menu_cart = new string[] {};
-            int[] harga_cart = new int[] {};
-            int[] banyak_cart = new int[] {};
-            MenuUtama(menu_cart,banyak_cart, harga_cart);
-           
+        {         
+            MenuUtama();
         }
 
-
-        static float CheckDiscount(float checkdiscount)
-        {
-            float x = 0;
-            if ((checkdiscount > 50000) && (checkdiscount <= 100000))
-            {
-                x = checkdiscount * 0.05F;
-            }
-            else if (checkdiscount > 100000)
-            {
-                x = checkdiscount * 0.1F;
-            }
-            else
-            {
-                x = 0;
-            }
-            checkdiscount = x;
-            return checkdiscount;
-        }
 
         static void PrintInvoice()
         {
-            Console.Clear();
             Console.WriteLine("INV/20221206/MPL/2876688425");
         }
 
-        static (string[], int[], int[]) MenuUtama(string[] menu_cart,int[] banyak_cart, int[] harga_cart )
+        static void MenuUtama()
         {
             Console.Clear();
             Console.WriteLine("     SELAMAT DATANG DI RUMAH MAKAN ABCD    ");
@@ -50,24 +29,39 @@
             Console.WriteLine("");
             Console.WriteLine("MASUKAN PILIHAN (1-4) ");
             int menu = Convert.ToInt32(Console.ReadLine());
-            switch (menu)
+            try
             {
-                case 1:
-                    PrintMenu(menu_cart,banyak_cart, harga_cart);
-                    break;
-                case 2:
-                    PrintKeranjang(menu_cart,banyak_cart, harga_cart);
-                    break;
-                case 3:
-                    Console.WriteLine("Keranjang Telah Dibersihkan");
-                    break;
-                case 4:
-                    PrintInvoice();
-                    break;
+                switch (menu)
+                {
+                    
+                    case 1:
+                        PrintMenu();
+                        break;
+                    case 2:
+                        PrintKeranjang();
+                        break;
+                    case 3:
+                        ResetCart();
+                        break;
+                    case 4:
+                        CheckOut();
+                        break;
+                    default:
+                        Console.WriteLine("ERROR : Input Not Valid");
+                        Console.ReadKey();
+                        MenuUtama();
+                        break;
+                }
             }
-            return (menu_cart, banyak_cart, harga_cart);
+            catch (Exception)
+            {
+                Console.WriteLine("ERROR : Input Not Valid");
+                Console.ReadKey();
+                MenuUtama();
+            }
+     
         }
-        static (string[], int[]) PrintMenu(string[] menu_cart,int[] banyak_cart, int[] harga_cart)
+        static void PrintMenu()
         {
             Console.Clear();
             //kode untuk menampilkan informasi menu          
@@ -83,22 +77,20 @@
             int menu = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Banyak Pesanan");
             int banyak = Convert.ToInt32(Console.ReadLine());
-            string[] temp_nama = new string[] { };
-            int[] temp_banyak = new int[] { };
-            int[] temp_harga = new int[] { };
+
+            string[] temp_nama = { };
+            int[] temp_banyak = { };
+            int[] temp_harga =  { };
             (temp_nama, temp_banyak, temp_harga) = SaveCart(menu, banyak);
 
             menu_cart = menu_cart.Append(temp_nama[0]).ToArray();
             banyak_cart = banyak_cart.Append(temp_banyak[0]).ToArray();
             harga_cart = harga_cart.Append(temp_harga[0]).ToArray();
-
-            PrintKeranjang(menu_cart,banyak_cart, harga_cart);
-
-            return (menu_cart, harga_cart);
+            PrintKeranjang();
         }
 
 
-        static void PrintKeranjang(string[] menu_cart, int[] banyak_cart, int[] harga_cart)
+        static void PrintKeranjang()
         {
             int sum = 0;
             sum = harga_cart.Sum();
@@ -120,18 +112,34 @@
             Console.WriteLine("3. CheckOut");
             Console.WriteLine("MASUKAN PILIHAN (1-3) ");
             int menu = Convert.ToInt32(Console.ReadLine());
-            switch (menu)
+            try
             {
-                case 1:
-                    MenuUtama(menu_cart, banyak_cart, harga_cart);
-                    break;
-                case 2:
-                    PrintMenu(menu_cart, banyak_cart, harga_cart);
-                    break;
-                case 3:
-                    PrintInvoice();
-                    break;
+                switch (menu)
+                {
+                    case 1:
+                        MenuUtama();
+                        break;
+                    case 2:
+                        PrintMenu();
+                        break;
+                    case 3:
+                        CheckOut();
+                        break;
+                    default:
+                        Console.WriteLine("ERROR : Input Not Valid");
+                        Console.ReadKey();
+                        PrintKeranjang();
+                        break;
+
+                }
             }
+            catch (Exception)
+            {
+                Console.WriteLine("ERROR : Input Not Valid");
+                Console.ReadKey();
+                PrintKeranjang();
+            }
+            
 
         }
 
@@ -159,5 +167,61 @@
             return (menu_cart, banyak_cart, harga_cart);
         }
 
+        static void ResetCart()
+        {
+            menu_cart = new string[] { };
+            banyak_cart = new int[] { };
+            harga_cart = new int[] { };
+            Console.WriteLine("Keranjang Telah Di Reset");
+            Console.ReadKey();
+            MenuUtama();
+        }
+
+        static void CheckOut()
+        {
+            Console.Clear();
+            Console.WriteLine("===============CHECKOUT==============");
+            int sum = 0;
+            sum = harga_cart.Sum();
+            Console.WriteLine("");
+            Console.WriteLine("Nama Menu" + "\t" + "\t" + "|Banyak" + "\t" + "|Harga");
+
+            for (int i = 0; i < menu_cart.Length; i++)
+            {
+                Console.Write(menu_cart[i] + "\t|");
+                Console.Write(banyak_cart[i] + "x" + "\t|" + "Rp.");
+                Console.WriteLine(harga_cart[i]);
+            }
+            Console.WriteLine("\t" + "TOTAL" + "\t" + "\t" + "\t|Rp." + sum);
+            Console.WriteLine(" ");
+            Console.Write("Masukkan Jumlah Uang : ");
+            int bayar = Convert.ToInt32(Console.ReadLine());
+            try
+            {
+                if (bayar >= sum)
+                {
+                    Console.WriteLine("===========Pembayaran===========");
+                    Console.WriteLine("| Total Belanja\t:" + sum + "\t |");
+                    Console.WriteLine("| Bayar   \t: " + bayar + "\t |");
+                    Console.WriteLine("| Kembalian  \t: " + (bayar - sum) + "\t |");
+                    PrintInvoice();
+                    ResetCart();
+                    Console.ReadKey();
+                    MenuUtama();
+                }
+                else
+                {
+                    Console.WriteLine("Uang Anda Kurang/Input Salah");
+                    Console.ReadKey();
+                    CheckOut();
+                }
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Uang Anda Kurang/Input Salah");
+                Console.ReadKey();
+                CheckOut();
+            }
+        }   
     }
 }
